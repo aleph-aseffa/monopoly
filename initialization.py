@@ -7,6 +7,5 @@ Contains all the functions needed for the initialization of the game.
 """
 
 
-# def __init__(self, name, balance, cards_owned, current_pos, in_jail, railroads_owned):
 
 
