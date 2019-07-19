@@ -8,19 +8,49 @@ Date created: 7/14/2019
 
 
 import class_definitions as cd
-from information import brd
+import information as info
 
 
 print("Beginning game!")
-Aleph = cd.Player("Aleph", 1500, [], 0, False, 0)
-Yah = cd.Player("Yah", 1500, [], 0, False, 0)
+info.display_instructions()
+board = info.initialize_cards_and_board()
 
-for i in range(3):
-    print()
-    print(f"Move {i+1}")
-    dice_result = Aleph.roll_dice()
-    Aleph.move_player(dice_result)
-    Aleph.check_pos(brd)
-    dice_result = Yah.roll_dice()
-    Yah.move_player(dice_result)
-    Yah.check_pos(brd)
+Aleph = cd.Player("Aleph", 1500, [], 0, False, 0, 0, 0, False)
+Yah = cd.Player("Yah", 50, [], 0, False, 0, 0, 0, False)
+player_list = [Aleph, Yah]
+
+
+def count_bankrupt_players(players):
+    counter = 0
+    for player in players:
+        if player.bankruptcy_status:
+            counter += 1
+    return counter
+
+
+def display_winner(players):
+    for player in players:
+        if player.bankruptcy_status == False:
+            return player.name
+
+
+if __name__ == "__main__":
+    i = 0
+    while count_bankrupt_players(player_list) != len(player_list)-1:
+        i = i % len(player_list)
+        print()
+        print(f"Move {i+1}")
+
+        print(f"{player_list[i].name}'s turn:")
+        user_choice = input("What do you want to do? ")
+        result = player_list[i].player_action(user_choice)
+
+        while result == -1:  # keep asking the user until they choose to roll the dice.
+            user_choice = input("What do you want to do? ")
+            result = player_list[i].player_action(user_choice)
+
+        new_pos = player_list[i].move_player(result)
+        player_list[i].check_pos(board)
+        i += 1
+
+    print(f"Game over! {display_winner(player_list)} has won!")
