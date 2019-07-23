@@ -21,6 +21,11 @@ player_list = [Aleph, Yah]
 
 
 def count_bankrupt_players(players):
+    """
+    Counts how many players have been bankrupted.
+    :param players: list, players that are playing the game.
+    :return: int, number of players that are bankrupt.
+    """
     counter = 0
     for player in players:
         if player.bankruptcy_status:
@@ -29,6 +34,11 @@ def count_bankrupt_players(players):
 
 
 def display_winner(players):
+    """
+    Prints out which player has won.
+    :param players: list, players that are playing the game.
+    :return: None.
+    """
     for player in players:
         if player.bankruptcy_status == False:
             return player.name
@@ -36,6 +46,7 @@ def display_winner(players):
 
 if __name__ == "__main__":
     i = 0
+    # continue running while there is more than one non-bankrupt player remaining.
     while count_bankrupt_players(player_list) != len(player_list)-1:
         i = i % len(player_list)
         print()
@@ -54,4 +65,3 @@ if __name__ == "__main__":
         i += 1
 
     print(f"Game over! {display_winner(player_list)} has won!")
-    

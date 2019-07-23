@@ -2,22 +2,10 @@
 @author: Aleph Aseffa
 Date created: 7/14/2019
 
-Contains all the classes of the game.
-
-Note: Currently there is no option to buy houses and hotels.
-
+Contains the Player class and associated functions.
 """
 import random
 import card_definitions as c_def
-
-
-Board = {
-    0: 'Park Place',
-    1: 'Community Chest',
-    2: 'Chance',
-    3: 'Ventnor Avenue',
-    4: 'Go to Jail'
-}
 
 
 class Player:
@@ -34,7 +22,8 @@ class Player:
 
     def roll_dice(self):  # TODO: add check for doubles.
         """
-        :return: n, an int between 2 and 12 inclusive.
+        Simulates the randomness of throwing two die.
+        :return: n: an int between 2 and 12 inclusive.
         """
         random.seed()
         dice1 = random.randint(1, 6)
@@ -45,7 +34,8 @@ class Player:
 
     def move_player(self, dice_amt):
         """
-        :param dice_amt: int, the number rolled by the two dice.
+        Moves the player by the amount returned by rolling two die.
+        :param dice_amt: int, the number rolled by the two die.
         :return: an int that represents the updated position of the player on the board.
         """
         self.current_pos += dice_amt
@@ -53,8 +43,9 @@ class Player:
 
     def check_pos(self, board):  # TODO: Clean up this function.
         """
-        :param board: list, the monopoly board
-        :return: none
+        Checks what card the player has landed on and carries out the appropriate action.
+        :param board: list, the monopoly board.
+        :return: None
         """
         self.current_pos = self.current_pos % 40
         brd_property = board[self.current_pos]
@@ -89,14 +80,19 @@ class Player:
 
     def add_balance(self, amount):
         """
-        Increases the player's balance
-        :param amount: int, the amount of money to add to the player's balance
-        :return: self.balance: the updated balance of the player
+        Increases the player's balance.
+        :param amount: int, the amount of money to add to the player's balance.
+        :return: self.balance: the updated balance of the player.
         """
         self.balance += amount
         return self.balance
 
     def charge_rent(self, card):
+        """
+        Charges the rent cost to the player.
+        :param card: an instance of the Card class.
+        :return: None.
+        """
         if card.color_group == "Railroad":
             rent_amt = 25 * card.owner.railroads_owned
         else:
@@ -106,6 +102,11 @@ class Player:
         card.owner.add_balance(rent_amt)
 
     def reduce_balance(self, amount):
+        """
+        Reduces the player's balance.
+        :param amount: int, the amount of money to reduce the player's balance by.
+        :return: None.
+        """
         if self.balance < amount:
             print("Your balance is insufficient for this action.")
             bankrupt = self.check_if_bankrupt(amount)
@@ -120,6 +121,10 @@ class Player:
             self.balance -= amount
 
     def bankrupt_player(self):
+        """
+        Bank collects all the player's owned properties and sets their bankruptcy status to True.
+        :return: None.
+        """
         self.balance = 0
 
         if len(self.cards_owned):
@@ -130,6 +135,11 @@ class Player:
         self.bankruptcy_status = True
 
     def check_if_bankrupt(self, amt_owed):
+        """
+        Checks if the player is bankrupt (i.e. can the player afford what they are being charged?).
+        :param amt_owed: int, the amount the player is being charged.
+        :return: Bool that represents if the player is bankrupt or not.
+        """
         net_worth = 0
 
         for card in self.cards_owned:
@@ -147,6 +157,10 @@ class Player:
             return False
 
     def display_player_properties(self):
+        """
+        Prints out all the cards the player owns.
+        :return: None.
+        """
         total = 0
         for card in self.cards_owned:
             print(f"{card.card_name}: ${card.card_cost}")
@@ -154,29 +168,36 @@ class Player:
         print(f"The sum of your card costs is: {total}")
 
     def player_action(self, user_choice):
-        if user_choice == "b":
-            print(self.balance)
-            return -1
-        elif user_choice == "c":
-            self.display_player_properties()
-            return -1
-        elif user_choice == "s":
+        """
+        Takes in the user's choice of what action to take and carries out that action.
+        :param user_choice: char, what the player chooses to do (e.g. r to roll the dice).
+        :return: None.
+        """
+        actions = {
+            "r": self.roll_dice(),
+            "b": print(self.balance()),
+            "c": self.display_player_properties(),
+            "s": print("Sell property feature not currently implemented."), # TODO: add this
+            "m": print("Mortgage property feature not currently implemented."), # TODO: add this
+            "h": print("Construct house feature not currently implemented.") # TODO: add this
 
-            # TODO: Implement sell_property function
-            return -1
-        elif user_choice == "m":
-            mortgage_card_name = input("Enter the name of the card you want to mortgage. ")
-            c_def.find_card(mortgage_card_name)
+        }
 
-        else:
-            dice_val = self.roll_dice()
-            return dice_val
+        actions[user_choice]
 
     def send_to_jail(self):
+        """
+        Sends the player to jail.
+        :return: None.
+        """
         self.current_pos = 10
         self.doubles_counter = 0
 
     def release_from_jail(self):
+        """
+        Releases the player from jail.
+        :return: None.
+        """
         self.doubles_counter = 0
         bail_choice = input("Would you like to pay the $50 bail? (y/n) ")
         if bail_choice == "y":

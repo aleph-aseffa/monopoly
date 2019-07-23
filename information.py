@@ -14,6 +14,11 @@ import card_definitions as c_def
 
 
 def initialize_cards_and_board():
+    """
+    Creates all the needed card objects and adds them in the correct order to the board variable.
+    The board represents the order of cards in the original Monopoly game board.
+    :return: board: a list of cards.
+    """
     go = c_def.Card("Go", "N/A", 0, 0, 0, {}, 0, "Bank", False)
     med_ave = c_def.Card("Mediterranean Avenue", "Brown", 60, 0, 0, {1: 100}, 0, "Bank", False)
     comm_chest = c_def.Card("Community Chest", "N/A", 0, 0, 0, {1: 100}, 0, "Bank", False)
@@ -104,11 +109,16 @@ def initialize_cards_and_board():
     return board
 
 
-def display_instructions():
+def display_instructions() -> None:
+    """
+    Displays possible options for players.
+    :return: None
+    """
     print("Instruction.......................................Command")
     print("Roll dice...........................................r")
     print("View balance........................................b")
-    print("View cards owned....................................c")
+    print("View cards and houses owned.........................c")
     print("Sell property.......................................s")
     print("Mortgage property...................................m")
+    print("Construct house.....................................h")
 

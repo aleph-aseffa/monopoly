@@ -16,17 +16,46 @@ class Card:
         self.mortgaged = mortgaged                  # bool
 
     def mortgage(self, player):
+        """
+        Sets the card's mortgaged status to True and updates the player's balance.
+        :param player: An instance of the Player class.
+        :return: None.
+        """
         player.add_balance(self.mortgage_amt)
         self.mortgaged = True
 
     def sell(self, player):
+        """
+        Returns ownership of the card to the Bank and updates the player's balance.
+        :param player: An instance of the Player class.
+        :return: None.
+        """
         player.add_balance(self.card_cost)
         self.owner = 'Bank'
 
     def purchase_card(self, player):
+        """
+        Gives ownership of the card to the Bank and updates the player's balance.
+        :param player: An instance of the Player class.
+        :return: None.
+        """
         if self.card_cost > player.balance:
             print("You cannot afford this card at the moment.")
         else:
             player.cards_owned.append(self)
             player.reduce_balance(self.card_cost)
             self.owner = player
+
+    def construct_house(self, player):
+        """
+        Updates number of houses that have been built on the card.
+        :param player: An instance of the Player class.
+        :return: None.
+        """
+        if self.house_cost > player.balance:
+            print("You cannot afford a house on this property at the moment.")
+        elif self.houses_built == 5:
+            print("You have built the maximum number of houses on this property.")
+        else:
+            self.houses_built += 1
+            print(f"You have built a house on {self.card_name}.")
