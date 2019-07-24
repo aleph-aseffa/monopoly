@@ -173,17 +173,24 @@ class Player:
         :param user_choice: char, what the player chooses to do (e.g. r to roll the dice).
         :return: None.
         """
-        actions = {
-            "r": self.roll_dice(),
-            "b": print(self.balance()),
-            "c": self.display_player_properties(),
-            "s": print("Sell property feature not currently implemented."), # TODO: add this
-            "m": print("Mortgage property feature not currently implemented."), # TODO: add this
-            "h": print("Construct house feature not currently implemented.") # TODO: add this
+        # TODO: add sell, mortgage, and construct house functions.
+        val = -1
+        if user_choice == "r":
+            val = self.roll_dice()
+        elif user_choice == "b":
+            print(self.balance)
+        elif user_choice == "c":
+            self.display_player_properties()
+        elif user_choice == "s":
+            print("Sell property feature coming soon.")
+        elif user_choice == "m":
+            print("Mortgage property feature coming soon.")
+        elif user_choice == "h":
+            print("Construct house feature coming soon.")
+        else:
+            print("Please enter a valid command.")
 
-        }
-
-        actions[user_choice]
+        return val
 
     def send_to_jail(self):
         """
