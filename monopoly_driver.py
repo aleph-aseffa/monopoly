@@ -7,7 +7,7 @@ Date created: 7/14/2019
 """
 
 
-import class_definitions as cd
+import player_definitions as p_def
 import information as info
 
 
@@ -15,8 +15,8 @@ print("Beginning game!")
 info.display_instructions()
 board = info.initialize_cards_and_board()
 
-Aleph = cd.Player("Aleph", 1500, [], 0, False, 0, 0, 0, False)
-Yah = cd.Player("Yah", 50, [], 0, False, 0, 0, 0, False)
+Aleph = p_def.Player("Aleph", 1500, [], 0, False, 0, 0, 0, False)
+Yah = p_def.Player("Yah", 1500, [], 0, False, 0, 0, 0, False)
 player_list = [Aleph, Yah]
 
 
