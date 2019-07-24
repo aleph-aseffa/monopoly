@@ -50,7 +50,6 @@ if __name__ == "__main__":
     while count_bankrupt_players(player_list) != len(player_list)-1:
         i = i % len(player_list)
         print()
-        print(f"Move {i+1}")
 
         print(f"{player_list[i].name}'s turn:")
         user_choice = input("What do you want to do? ")
