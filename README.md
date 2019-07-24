@@ -11,6 +11,7 @@ It's important to remember these instructions.
 The player can check on their status (e.g. viewing their balance, cards owned), take actions (mortgage properties, sell properties, construct houses), or roll the dice and move. Only rolling the dice will change the turn to the next player, so you can run all the other actions you want until you are ready to move.
 
 Here's an extract from a sample round of Monopoly:
+
 ![Gameplay](https://i.imgur.com/EVmzkHS.png)
 
 This continues until there is only one player remaining that is not bankrupt. At this point, the game will end and print out who won.
