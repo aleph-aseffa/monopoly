@@ -26,22 +26,22 @@ def initialize_cards_and_board():
                                                                       3: 90,
                                                                       4: 160,
                                                                       5: 250}, 30, "Bank", False)
-    comm_chest = c_def.Card("Community Chest", "N/A", 0, 0, 0, "N/A", 0, "Bank", False)
+    comm_chest = c_def.Card("Community Chest", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "Bank", False)
     baltic_ave = c_def.Card("Baltic Avenue", "Brown", 60, 50, 0, {0: 4,
                                                                   1: 20,
                                                                   2: 60,
                                                                   3: 180,
                                                                   4: 320,
                                                                   5: 450}, 30, "Bank", False)
-    income_tax = c_def.Card("Income Tax", "N/A", 200, 0, 0, {1: 100}, 0, "Bank", False)
-    reading_rr = c_def.Card("Reading Railroad", "Railroad", 200, "N/A", "N/A", {1: 25}, 100, "Bank", False)
+    income_tax = c_def.Card("Income Tax", "N/A", 200, "N/A", "N/A", "N/A", "N/A", "Bank", False)
+    reading_rr = c_def.Card("Reading Railroad", "Railroad", 200, "N/A", "N/A", "N/A", 100, "Bank", False)
     oriental_ave = c_def.Card("Oriental Avenue", "Light Blue", 100, 50, 0, {0: 6,
                                                                             1: 30,
                                                                             2: 90,
                                                                             3: 270,
                                                                             4: 400,
                                                                             5: 550}, 50, "Bank", False)
-    chance = c_def.Card("Community Chest", "N/A", 0, 0, 0, {1: 100}, 0, "Bank", False)
+    chance = c_def.Card("Community Chest", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "Bank", False)
     vermont_ave = c_def.Card("Vermont Avenue", "Light Blue", 100, 50, 0, {0: 6,
                                                                           1: 30,
                                                                           2: 90,
@@ -55,7 +55,7 @@ def initialize_cards_and_board():
                                                                            4: 450,
                                                                            5: 600}, 60, "Bank", False)
     # new row
-    jail = c_def.Card("Jail/Visiting Jail", "N/A", 0, 0, 0, {1: 100}, 0, "Bank", False)
+    jail = c_def.Card("Jail/Visiting Jail", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "Bank", False)
     st_charles_place = c_def.Card("St. Charles Place", "Pink", 140, 100, 0, {0: 10,
                                                                              1: 50,
                                                                              2: 150,
@@ -75,7 +75,7 @@ def initialize_cards_and_board():
                                                                        3: 500,
                                                                        4: 700,
                                                                        5: 900}, 80, "Bank", False)
-    penn_rr = c_def.Card("Pennsylvania Railroad", "Railroad", 200, 0, 0, {1: 100}, 100, "Bank", False)
+    penn_rr = c_def.Card("Pennsylvania Railroad", "Railroad", 200, "N/A", "N/A", "N/A", 100, "Bank", False)
     st_james_place = c_def.Card("St. James Place", "Orange", 180, 100, 0, {0: 14,
                                                                            1: 70,
                                                                            2: 200,
@@ -95,7 +95,7 @@ def initialize_cards_and_board():
                                                                    3: 600,
                                                                    4: 800,
                                                                    5: 1000}, 100, "Bank", False)
-    free_parking = c_def.Card("Free Parking", "N/A", 0, 0, 0, {1: 100}, 0, "Bank", False)
+    free_parking = c_def.Card("Free Parking", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "Bank", False)
     # rotate
     kentucky_ave = c_def.Card("Kentucky Avenue", "Red", 220, 150, 0, {0: 18,
                                                                       1: 90,
@@ -116,7 +116,7 @@ def initialize_cards_and_board():
                                                                       3: 750,
                                                                       4: 925,
                                                                       5: 1100}, 120, "Bank", False)
-    bno_rr = c_def.Card("B. & O. Railroad", "Railroad", 200, 0, 0, {1: 100}, 100, "Bank", False)
+    bno_rr = c_def.Card("B. & O. Railroad", "Railroad", 200, "N/A", "N/A", "N/A", 100, "Bank", False)
     atlantic_ave = c_def.Card("Atlantic Avenue", "Yellow", 260, 150, 0, {0: 22,
                                                                          1: 110,
                                                                          2: 330,
@@ -137,7 +137,7 @@ def initialize_cards_and_board():
                                                                           4: 1025,
                                                                           5: 1200}, 140, "Bank", False)
     # rotate
-    go_to_jail = c_def.Card("Go to Jail", "N/A", 0, 0, 0, {1: 100}, 0, "Bank", False)
+    go_to_jail = c_def.Card("Go to Jail", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "Bank", False)
     pacific_ave = c_def.Card("Pacific Avenue", "Green", 300, 200, 0, {0: 26,
                                                                       1: 130,
                                                                       2: 390,
@@ -157,7 +157,7 @@ def initialize_cards_and_board():
                                                                         3: 1000,
                                                                         4: 1200,
                                                                         5: 1400}, 160, "Bank", False)
-    short_line_rr = c_def.Card("Short Line", "Railroad", 200, 0, 0, {1: 100}, 100, "Bank", False)
+    short_line_rr = c_def.Card("Short Line", "Railroad", 200, "N/A", "N/A", "N/A", 100, "Bank", False)
     # chance
     park_place = c_def.Card("Park Place", "Blue", 350, 200, 0, {0: 35,
                                                                 1: 175,
@@ -165,7 +165,7 @@ def initialize_cards_and_board():
                                                                 3: 1100,
                                                                 4: 1300,
                                                                 5: 1500}, 175, "Bank", False)
-    luxury_tax = c_def.Card("Luxury Tax", "N/A", 100, 0, 0, {1: 100}, 0, "Bank", False)
+    luxury_tax = c_def.Card("Luxury Tax", "N/A", 100, "N/A", "N/A", "N/A", 0, "Bank", False)
     boardwalk = c_def.Card("Boardwalk", "N/A", 400, 200, 0, {0: 50,
                                                              1: 200,
                                                              2: 600,
