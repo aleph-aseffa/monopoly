@@ -165,7 +165,7 @@ class Player:
         for card in self.cards_owned:
             print(f"{card.card_name}: ${card.card_cost}")
             total += card.card_cost
-        print(f"The sum of your card costs is: {total}")
+        print(f"The sum of your card costs is: ${total}")
 
     def player_action(self, user_choice):
         """
@@ -178,8 +178,9 @@ class Player:
         if user_choice == "r":
             val = self.roll_dice()
         elif user_choice == "b":
-            print(self.balance)
+            print(f"Your balance is: ${self.balance}")
         elif user_choice == "c":
+            print("Your properties are:")
             self.display_player_properties()
         elif user_choice == "s":
             print("Sell property feature coming soon.")
