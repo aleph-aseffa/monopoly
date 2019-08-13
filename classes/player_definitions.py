@@ -5,6 +5,7 @@ Date created: 7/14/2019
 Contains the Player class and associated functions.
 """
 import random
+#from ai import ai
 
 
 class Player:
@@ -82,9 +83,12 @@ class Player:
 
             else:
                 print(f"{self.name} landed on {brd_property.card_name}")
-                user_action = input("Do you want to buy the property? (y/n) ")
-                if user_action == 'y':
-                    brd_property.purchase_card(self)
+                if self.name == "AI":
+                    return 1  # Indicates to the AI that the property can be purchased
+                else:
+                    user_action = input("Do you want to buy the property? (y/n) ")
+                    if user_action == 'y':
+                        brd_property.purchase_card(self)
 
     def add_balance(self, amount):
         """
@@ -228,3 +232,21 @@ class Player:
                 dice_result = self.roll_dice()
                 self.move_player(dice_result)
 
+    def trade_with_human(self, other_player):  # TODO: finish function
+        cash_value = input("How much cash do you want to offer? ")
+        properties_to_offer = input("Enter the properties do you want to offer separated by commas\n").split(',')
+        cash_received = input(f"How much cash is {other_player.name} giving you?")
+        properties_received = input(f"Which properties is {other_player.name} giving you?\n").split(',')
+
+        pass
+
+    def trade_with_ai(self):  # TODO: finish function
+        cash_value = input("How much cash do you want to offer? ")
+        properties_to_offer = input("Enter the properties do you want to offer separated by commas\n").split(',')
+
+        if ai.evaluate_trade(self, cash_value, properties_to_offer):
+            pass
+        else:
+            retry = input("The AI has rejected your trade offer. Do you want to suggest a different trade? (y/n")
+            if retry == "y":
+                self.trade_with_ai()
