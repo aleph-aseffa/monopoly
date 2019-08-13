@@ -5,7 +5,6 @@ Date created: 7/14/2019
 Contains the Player class and associated functions.
 """
 import random
-import card_definitions as c_def
 
 
 class Player:
@@ -50,7 +49,7 @@ class Player:
         self.current_pos = self.current_pos % 40
         brd_property = board[self.current_pos]
 
-        if brd_property.card_cost == "N/A": # this means the player cannot purchase the card
+        if brd_property.card_cost == "N/A":  # this means the player cannot purchase the card
 
             if brd_property.card_name == 'Jail/Visiting Jail':
                 print(f"{self.name} is visiting jail.")

@@ -8,7 +8,8 @@ This includes:
     - Community chest information
     - Chance information
 """
-import card_definitions as c_def
+from classes import card_definitions as c_def
+
 
 # card_name, color_group, card_cost, house_cost, houses_built, rent_prices, mortgage_amt, owner, mortgaged
 

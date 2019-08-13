@@ -6,10 +6,8 @@ Date created: 7/14/2019
 
 """
 
-
-import player_definitions as p_def
-import information as info
-
+from classes import player_definitions as p_def
+from game import information as info
 
 print("Beginning game!")
 info.display_instructions()
