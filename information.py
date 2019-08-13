@@ -33,7 +33,7 @@ def initialize_cards_and_board():
                                                                   3: 180,
                                                                   4: 320,
                                                                   5: 450}, 30, "Bank", False)
-    income_tax = c_def.Card("Income Tax", "N/A", 200, "N/A", "N/A", "N/A", "N/A", "Bank", False)
+    income_tax = c_def.Card("Income Tax", "N/A", "N/A", "N/A", "N/A", "N/A", "N/A", "Bank", False)
     reading_rr = c_def.Card("Reading Railroad", "Railroad", 200, "N/A", "N/A", "N/A", 100, "Bank", False)
     oriental_ave = c_def.Card("Oriental Avenue", "Light Blue", 100, 50, 0, {0: 6,
                                                                             1: 30,
@@ -165,7 +165,7 @@ def initialize_cards_and_board():
                                                                 3: 1100,
                                                                 4: 1300,
                                                                 5: 1500}, 175, "Bank", False)
-    luxury_tax = c_def.Card("Luxury Tax", "N/A", 100, "N/A", "N/A", "N/A", 0, "Bank", False)
+    luxury_tax = c_def.Card("Luxury Tax", "N/A", "N/A", "N/A", "N/A", "N/A", 0, "Bank", False)
     boardwalk = c_def.Card("Boardwalk", "N/A", 400, 200, 0, {0: 50,
                                                              1: 200,
                                                              2: 600,
