@@ -8,14 +8,14 @@ Date created: 7/14/2019
 
 from classes import player_definitions as p_def
 from game import information as info
+from ai import ai
 
-print("Beginning game!")
-info.display_instructions()
 board = info.initialize_cards_and_board()
 
 Aleph = p_def.Player("Aleph", 1500, [], 0, False, 0, 0, 0, False)
 Yah = p_def.Player("Yah", 1500, [], 0, False, 0, 0, 0, False)
-player_list = [Aleph, Yah]
+Computer = p_def.Player("AI", 1500, [], 0, False, 0, 0, 0, False)
+player_list = [Aleph, Yah, Computer]
 
 
 def count_bankrupt_players(players):
@@ -43,22 +43,29 @@ def display_winner(players):
 
 
 if __name__ == "__main__":
+    print("Beginning game!")
+    info.display_instructions()
+
     i = 0
     # continue running while there is more than one non-bankrupt player remaining.
     while count_bankrupt_players(player_list) != len(player_list)-1:
         i = i % len(player_list)
+
         print()
-
         print(f"{player_list[i].name}'s turn:")
-        user_choice = input("What do you want to do? ")
-        result = player_list[i].player_action(user_choice)
 
-        while result == -1:  # keep asking the user until they choose to roll the dice.
+        if player_list[i].name == "AI":
+            ai.move(Computer)
+
+        else:
             user_choice = input("What do you want to do? ")
             result = player_list[i].player_action(user_choice)
+            while result == -1:  # keep asking the user until they choose to roll the dice.
+                user_choice = input("What do you want to do? ")
+                result = player_list[i].player_action(user_choice)
+            new_pos = player_list[i].move_player(result)
+            player_list[i].check_pos(board)
 
-        new_pos = player_list[i].move_player(result)
-        player_list[i].check_pos(board)
         i += 1
 
     print(f"Game over! {display_winner(player_list)} has won!")
