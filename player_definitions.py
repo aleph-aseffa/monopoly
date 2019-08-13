@@ -41,7 +41,7 @@ class Player:
         self.current_pos += dice_amt
         return self.current_pos
 
-    def check_pos(self, board):  # TODO: Clean up this function.
+    def check_pos(self, board):
         """
         Checks what card the player has landed on and carries out the appropriate action.
         :param board: list, the monopoly board.
@@ -50,33 +50,42 @@ class Player:
         self.current_pos = self.current_pos % 40
         brd_property = board[self.current_pos]
 
-        if brd_property.card_name == 'Community Chest':
-            print(f"{self.name} landed on Community Chest")  # TODO: add all these functions
-        elif brd_property.card_name == 'Chance':
-            print(f"{self.name} landed on Chance")
-        elif brd_property.card_name == 'Jail/Visiting Jail':
-            print(f"{self.name} is visiting jail.")
-        elif brd_property.card_name == 'Luxury Tax':
-            print(f"{self.name} landed on Luxury Tax and has been fined $75")
-            self.reduce_balance(75)
-        elif brd_property.card_name == 'Income Tax':
-            print(f"{self.name} landed on Income Tax and has been fined $200.")
-            self.reduce_balance(200)
-        elif brd_property.card_name == 'Go to Jail':
-            print(f"{self.name} landed on Go to Jail and has been arrested!")
-            self.send_to_jail()
-        elif brd_property.card_name == 'Go':
-            print(f"{self.name} landed on Go.")
-        elif brd_property.mortgaged:
-            print(f"{self.name} landed on a mortgaged property.")
-        elif brd_property.owner != 'Bank' and brd_property.owner.name != self.name:
-            print(f"{self.name} landed on a property owned by {brd_property.owner.name}")
-            self.charge_rent(brd_property)
+        if brd_property.card_cost == "N/A": # this means the player cannot purchase the card
+
+            if brd_property.card_name == 'Jail/Visiting Jail':
+                print(f"{self.name} is visiting jail.")
+
+            elif brd_property.card_name == 'Luxury Tax':
+                print(f"{self.name} landed on Luxury Tax and has been fined $75")
+                self.reduce_balance(75)
+
+            elif brd_property.card_name == 'Income Tax':
+                print(f"{self.name} landed on Income Tax and has been fined $200")
+                self.reduce_balance(200)
+
+            elif brd_property.card_name == 'Go to Jail':
+                print(f"{self.name} landed on Go to Jail and has been arrested!")
+                self.send_to_jail()
+
+            else:
+                print(f"{self.name} landed on {brd_property.card_name}")
+
         else:
-            print(f"{self.name} landed on {brd_property.card_name}")
-            user_action = input("Do you want to buy the property? (y/n) ")
-            if user_action == 'y':
-                brd_property.purchase_card(self)
+            if brd_property.mortgaged:
+                print(f"{self.name} landed on a mortgaged property.")
+
+            elif brd_property.owner != 'Bank': # and brd_property.owner.name != self.name:
+                if brd_property.owner.name == self.name:
+                    print(f"{self.name} landed on {brd_property.card_name}, a property they own.")
+                else:
+                    print(f"{self.name} landed on {brd_property.card_name}, a property owned by {brd_property.owner.name}")
+                    self.charge_rent(brd_property)
+
+            else:
+                print(f"{self.name} landed on {brd_property.card_name}")
+                user_action = input("Do you want to buy the property? (y/n) ")
+                if user_action == 'y':
+                    brd_property.purchase_card(self)
 
     def add_balance(self, amount):
         """
