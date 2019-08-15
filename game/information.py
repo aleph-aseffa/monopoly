@@ -233,5 +233,6 @@ def display_instructions() -> None:
     print("Mortgage property...................................m")
     print("Construct house.....................................h")
     print("Trade with AI.......................................t")
+    print("Trade with another player...........................p")
     print("View the AI's stats.................................v")
 

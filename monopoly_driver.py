@@ -59,10 +59,10 @@ if __name__ == "__main__":
 
         else:
             user_choice = input("What do you want to do? ")
-            result = player_list[i].player_action(user_choice)
+            result = player_list[i].player_action(user_choice, player_list)
             while result == -1:  # keep asking the user until they choose to roll the dice.
                 user_choice = input("What do you want to do? ")
-                result = player_list[i].player_action(user_choice)
+                result = player_list[i].player_action(user_choice, player_list)
             new_pos = player_list[i].move_player(result)
             player_list[i].check_pos(board)
 

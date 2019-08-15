@@ -74,7 +74,7 @@ class Player:
             if brd_property.mortgaged:
                 print(f"{self.name} landed on a mortgaged property.")
 
-            elif brd_property.owner != 'Bank': # and brd_property.owner.name != self.name:
+            elif brd_property.owner != 'Bank':  # and brd_property.owner.name != self.name:
                 if brd_property.owner.name == self.name:
                     print(f"{self.name} landed on {brd_property.card_name}, a property they own.")
                 else:
@@ -179,7 +179,7 @@ class Player:
             total += card.card_cost
         print(f"The sum of your card costs is: ${total}")
 
-    def player_action(self, user_choice):
+    def player_action(self, user_choice, player_list):
         """
         Takes in the user's choice of what action to take and carries out that action.
         :param user_choice: char, what the player chooses to do (e.g. r to roll the dice).
@@ -200,6 +200,9 @@ class Player:
             print("Mortgage property feature coming soon.")
         elif user_choice == "h":
             print("Construct house feature coming soon.")
+        elif user_choice == "p":
+            trading_partner = input("Enter the name of the player you're trading with. ")
+            self.trade_with_human(trading_partner, player_list)
         else:
             print("Please enter a valid command.")
 
@@ -232,13 +235,36 @@ class Player:
                 dice_result = self.roll_dice()
                 self.move_player(dice_result)
 
-    def trade_with_human(self, other_player):  # TODO: finish function
-        cash_value = input("How much cash do you want to offer? ")
+    def trade_with_human(self, player_reference, player_list):  # TODO: finish function
+
+        for player in player_list:
+            if player.name == player_reference:
+                other_player = player
+
+        cash_given = int(input("How much cash are you giving away? "))
         properties_to_offer = input("Enter the properties do you want to offer separated by commas\n").split(',')
-        cash_received = input(f"How much cash is {other_player.name} giving you?")
+
+        cash_received = int(input(f"How much cash is {other_player.name} giving you?"))
         properties_received = input(f"Which properties is {other_player.name} giving you?\n").split(',')
 
-        pass
+        if properties_to_offer[0] == '':
+            pass
+        else:
+            for card in properties_to_offer:
+                other_player.cards_owned.append(card)
+        self.reduce_balance(cash_given)
+        other_player.add_balance(cash_given)
+
+        if properties_received[0] == '':
+            pass
+        else:
+            for card in properties_received:
+                self.cards_owned.append(card)
+        other_player.reduce_balance(cash_received)
+        self.add_balance(cash_received)
+
+        print(f"{self.name} has given ${cash_given} and the following properties: {properties_to_offer}")
+        print(f"{other_player.name} has received ${cash_received} and the following properties: {properties_received}")
 
     def trade_with_ai(self):  # TODO: finish function
         cash_value = input("How much cash do you want to offer? ")
