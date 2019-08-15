@@ -59,3 +59,13 @@ class Card:
         else:
             self.houses_built += 1
             print(f"You have built a house on {self.card_name}.")
+
+
+def locate_card_object(name, board):
+
+    for card in board:
+        if card.card_name == name:
+            card_object = card
+            break
+
+    return card_object

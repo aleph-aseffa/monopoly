@@ -55,14 +55,14 @@ if __name__ == "__main__":
         print(f"{player_list[i].name}'s turn:")
 
         if player_list[i].name == "AI":
-            ai.move(Computer)
+            ai.move(Computer, board)
 
         else:
             user_choice = input("What do you want to do? ")
-            result = player_list[i].player_action(user_choice, player_list)
+            result = player_list[i].player_action(user_choice, player_list, Computer, board)
             while result == -1:  # keep asking the user until they choose to roll the dice.
                 user_choice = input("What do you want to do? ")
-                result = player_list[i].player_action(user_choice, player_list)
+                result = player_list[i].player_action(user_choice, player_list, Computer, board)
             new_pos = player_list[i].move_player(result)
             player_list[i].check_pos(board)
 
